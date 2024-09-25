@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="row">
+            <!-- Consulta -->
+            <div class="col-xl-12 col-sm-12 col-md-12 mt-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ path('reporte_index') }}">Inicio</a></li>
+                        <li class="breadcrumb-item active">Reporte {{ informe.anio  }}</li>
+                    </ol>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <h3 class="mb-5">Cursos impartidos por {{ informe.academico.nombre }} {{ informe.academico.apellido }} en {{ informe.anio }} </h3>
+
+        <div>
+            {% if informe.cursos|length == 0 %}
+                <p class="text-danger">No se registró información</p>
+            {% else %}
+
+                {% for curso in informe.cursos %}
+
+                        <div class="col-6 mb-5">
+                            <table class="table table-hover">
+                                <tbody>
+                                <tr class="bg-light">
+                                    <th scope="row">Curso</th>
+                                    <td class="thead-light">{{ curso.nombre }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Nivel</th>
+                                    <td colspan="2">{{ curso.nivel }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Programa</th>
+                                    <td colspan="2">{{ curso.lugar }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Entidad en la que se imparte</th>
+                                    <td colspan="2">{{ curso.lugar }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tipo de curso</th>
+                                    <td colspan="2">{{ curso.tipo  }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Inicio/Fin</th>
+                                    <td colspan="2">
+                                        {% if curso.fechaInicio is null or curso.fechaFin is null %}
+
+                                            No se registraron fechas
+                                        {% else %}
+                                        {{ curso.fechaInicio|localizeddate('none', 'none', 'es_ES', null, 'MMMM') }} /
+                                        {{ curso.fechaFin|localizeddate('none', 'none', 'es_ES', null, 'MMMM') }}
+                                            {% endif %}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+
+
+{% endblock %}

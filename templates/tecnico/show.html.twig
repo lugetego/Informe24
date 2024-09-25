@@ -1,0 +1,73 @@
+{% block main %}
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xl-8">
+                <p><strong>Académico:</strong> {{ academico.nombre }} {{ academico.apellido }}</p>
+                <h3>Informe {{ actual }}</h3>
+            </div>
+            <div class="col-xl-4">
+                <p class="text-right"><img class="right" src="{{ asset('img/ccm-bn.png') }}" width="165px" height="50px" /></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+
+                {% if tecnicos.informeAnual |length == 0 %}
+                    <p class="text-danger">No se ha registrado información</p>
+                {% else %}
+                    {{ tecnicos.informeAnual| nl2br }}<br><br>
+                {% endif %}
+            </div>
+
+            <div class="col-xl-12">
+                <strong>Cursos y seminarios</strong><br>
+                {% if informe.cursos|length == 0 %}
+                    <p class="text-danger">No se registró información</p>
+                {% else %}
+                    <ol>
+                        {% for curso in informe.cursos %}
+                            <li>{{ curso.nombre }}, <small>{{ curso.tipo|title }}</small>,<em> {{ curso.nivel }}, {{ curso.horas }} horas por semana, {{ curso.lugar }}</em>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                {% endif %}
+            </div>
+
+            <div class="col-xl-12">
+                <strong>Tesistas</strong><br>
+                {% if informe.estudiantes|length == 0 %}
+                    <p class="text-danger">No se registró información</p>
+                {% else %}
+                    <ol>
+                        {% for estudiante in informe.estudiantes %}
+                            <li>{{ estudiante.alumno |title }}, <small>{{ estudiante.nivel|title }}, {{ estudiante.programa }}</small>,
+                                {{ estudiante.avance }}% de avance, {% if estudiante.titulado %} titulado el {{ estudiante.titulacion|localizeddate('long', 'none') }},{% endif %}
+                                <em> {{ estudiante.tesis }}</em>
+                                <br>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <h3>Plan de trabajo {{ siguiente }}</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                {% if tecnicos.plan |length == 0 %}
+                    <p class="text-danger">No se ha registrado información</p>
+                {% else %}
+                    {{ tecnicos.plan| nl2br }}<br><br>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

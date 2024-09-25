@@ -1,0 +1,202 @@
+{% extends 'base.html.twig' %}
+{# templates/admin/index.html.twig #}
+{% block title %}Administración{% endblock %}
+
+ {% block head_css %}
+     {{ parent() }}
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap4.min.css">
+ {% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    {% set tesisAnt = 0 %}
+    {% set tesisAct = 0 %}
+    {% set cursosAnt = 0 %}
+    {% set cursosAct = 0 %}
+
+    {% for academico in academicos %}
+    {% for informe in academico.informes %}
+    {% if informe.anio == anterior %}
+        {% for titulado in informe.estudiantes %}
+            {% if titulado.titulado == true %}
+                {% set tesisAnt = tesisAnt + 1 %}
+            {% endif %}
+        {% endfor %}
+        {% for curso in informe.cursos %}
+            {% set cursosAnt = cursosAnt + 1 %}
+        {% endfor %}
+    {% elseif informe.anio == actual %}
+        {% for titulado in informe.estudiantes %}
+            {% if titulado.titulado == true %}
+                {% set tesisAct = tesisAct + 1 %}
+            {% endif %}
+        {% endfor %}
+        {% for curso in informe.cursos %}
+            {% set cursosAct = cursosAct + 1 %}
+        {% endfor %}
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+
+
+
+
+    <div class="d-flex justify-content-end">
+        <div class="card text-bg-light mb-3" >
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">Cursos {{ anterior }}
+                    <span class="badge badge-pill badge-primary">{{ cursosAnt }}</span>
+                </li>
+                <li class="list-group-item">Tesistas {{ anterior }}
+                    <span class="badge badge-pill badge-primary">{{ tesisAnt }}</span>
+                </li>
+                <li class="list-group-item">Cursos {{ actual }}
+                    <span class="badge badge-pill badge-primary">{{ cursosAct }}</span>
+                </li>
+                <li class="list-group-item">Tesistas {{ actual }}
+                    <span class="badge badge-pill badge-primary">{{ tesisAct }}</span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <h3>Reporte por académico</h3>
+
+    <table id="myTable" class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th class="text-center">Académico</th>
+            <th class="text-center">{{ anterior }}</th>
+            <th class="text-center">{{ actual }}</th>
+
+            <!-- Add other columns as necessary -->
+        </tr>
+        </thead>
+        <tbody>
+        {% for academico in academicos %}
+            {%  if academico.activo != false %}
+                <tr>
+                    <td> {{ academico.nombre }} {{ academico.apellido }}</td>
+                    <td>
+                        {% for informe in academico.informes %}
+                            {% if informe.anio == anterior %}
+                                {%  set titulados = 0 %}
+                                {% for titulado in informe.estudiantes %}
+                                    {% if titulado.titulado == true %}
+                                        {% set titulados = titulados + 1 %}
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% set badgeClassTi = titulados > 0 ? 'badge-success' : 'badge-secondary' %}
+                                <span class="badge badge-pill {{ badgeClassTi }}">{{ titulados }}</span>
+                                <a href="{{ path('reporte_tesistas', { 'anio': informe.anio, 'academico':informe.academico.id }) }}">
+                                    Tesistas</a><br>
+
+                                {% set badgeClassCu = informe.cursos|length > 0 ? 'badge-success' : 'badge-secondary' %}
+                                <span class="badge badge-pill {{ badgeClassCu }}">{{ informe.cursos|length }}</span>
+                                <a href="{{ path('reporte_cursos', { 'anio': informe.anio, 'academico':informe.academico.id }) }}">
+                                    Cursos</a>
+
+
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+
+                    <td>
+
+                        {% for informe in academico.informes %}
+                            {% if informe.anio == actual %}
+
+                                {%  set titulados = 0 %}
+                                {% for titulado in informe.estudiantes %}
+                                    {% if titulado.titulado == true %}
+                                        {% set titulados = titulados + 1 %}
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% set badgeClassTi = titulados > 0 ? 'badge-success' : 'badge-secondary' %}
+                                <span class="badge badge-pill {{ badgeClassTi }}">{{ titulados }}</span>
+                                <a href="{{ path('reporte_tesistas', {
+                                    'anio': informe.anio,
+                                    'academico': informe.academico.id,
+                                    'titulados': titulados  }) }}">
+                                    Tesistas</a><br>
+
+                                {% set badgeClassCu = informe.cursos|length > 0 ? 'badge-success' : 'badge-secondary' %}
+                                <span class="badge badge-pill {{ badgeClassCu }}">{{ informe.cursos|length }}</span>
+                                <a href="{{ path('reporte_cursos', { 'anio': informe.anio, 'academico':informe.academico.id }) }}">
+                                    Cursos</a>
+
+
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+
+
+
+
+
+
+
+                    <!-- Display other fields as necessary -->
+                </tr>
+            {%  endif %}
+
+        {% else %}
+            <tr>
+                <td colspan="2">No records found</td>
+            </tr>
+        {% endfor %}
+
+        {# {% for informe in informes %}
+            {%  if informe.academico.activo != 0  %}
+
+            <tr>
+                <td>{{ informe.id }}</td>
+                <td>{{ informe.academico.nombre }} {{ informe.academico.apellido }}</td>
+                <td>{{ informe.dictamen }}</td>
+                <td><a href="{{ path('admin_consulta', { 'anio': informe.anio, 'academico':informe.academico.id }) }}">{{ informe.anio }}</a></td>
+                <!-- Display other fields as necessary -->
+            </tr>
+            {%  endif %}
+
+        {% else %}
+            <tr>
+                <td colspan="2">No records found</td>
+            </tr>
+        {% endfor %}#}
+
+        </tbody>
+    </table>
+
+
+</div>
+
+{% endblock %}
+
+
+{% block head_js %}
+    {{ parent() }}
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables Bootstrap 4 JS -->
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Initialize DataTables -->
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable(
+                {
+                    "pageLength": 50
+
+                }
+            );
+        });
+    </script>
+{% endblock %}

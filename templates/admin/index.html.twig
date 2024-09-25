@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+{# templates/admin/index.html.twig #}
+{% block title %}Administración{% endblock %}
+
+ {% block head_css %}
+     {{ parent() }}
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap4.min.css">
+{% endblock %}
+
+{% block body %}
+    <h1>Académicos</h1>
+
+    <table id="myTable" class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Informe_id</th>
+            <th>Académico</th>
+            <th>Informes</th>
+            <!-- Add other columns as necessary -->
+        </tr>
+        </thead>
+        <tbody>
+        {% for academico in academicos %}
+            {%  if academico.activo != false %}
+
+                <tr>
+                    <td>{{ academico.id }}</td>
+
+                    <td> <a href="{{ path('dashboard') }}?_switch_user={{ academico.user.username }}">
+                            {{ academico.nombre }} {{ academico.apellido }}
+                        </a></td>
+                    <td>
+                        {% for informe in academico.informes %}
+                            <a href="{{ path('admin_consulta', { 'anio': informe.anio, 'academico':informe.academico.id }) }}">{{ informe.anio}}{% if not loop.last %}, {% endif %}</a>
+
+                            {# Adjust this according to the properties of the informe object #}
+
+
+                        {% endfor %}
+                    </td>
+
+
+                    <!-- Display other fields as necessary -->
+                </tr>
+            {%  endif %}
+
+        {% else %}
+            <tr>
+                <td colspan="2">No records found</td>
+            </tr>
+        {% endfor %}
+
+       {# {% for informe in informes %}
+            {%  if informe.academico.activo != 0  %}
+
+            <tr>
+                <td>{{ informe.id }}</td>
+                <td>{{ informe.academico.nombre }} {{ informe.academico.apellido }}</td>
+                <td>{{ informe.dictamen }}</td>
+                <td><a href="{{ path('admin_consulta', { 'anio': informe.anio, 'academico':informe.academico.id }) }}">{{ informe.anio }}</a></td>
+                <!-- Display other fields as necessary -->
+            </tr>
+            {%  endif %}
+
+        {% else %}
+            <tr>
+                <td colspan="2">No records found</td>
+            </tr>
+        {% endfor %}#}
+
+        </tbody>
+    </table>
+
+
+
+
+{% endblock %}
+
+
+{% block head_js %}
+{{ parent() }}
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables Bootstrap 4 JS -->
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Initialize DataTables -->
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+</script>
+{% endblock %}

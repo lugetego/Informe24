@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="row">
+            <!-- Consulta -->
+            <div class="col-xl-12 col-sm-12 col-md-12 mt-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ path('reporte_index') }}">Inicio</a></li>
+                        <li class="breadcrumb-item active">Reporte {{ informe.anio  }}</li>
+                    </ol>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <h3 class="mb-5">Tesistas titulados de {{ informe.academico.nombre }} {{ informe.academico.apellido }} en {{ informe.anio }} </h3>
+
+        <div>
+
+            {%  set titulados = 0 %}
+
+            {% for estudiante in informe.estudiantes %}
+                {% if estudiante.titulado == 1 %}
+                    {%  set titulados = titulados + 1 %}
+                {% endif %}
+
+            {% endfor %}
+
+                {% if titulados == 0  %}
+
+                <p class="text-danger">No hay registro de estudiantes titulados</p>
+                {% else %}
+
+                {% for estudiante in informe.estudiantes %}
+
+                    {% if estudiante.titulado == 1 %}
+                        <div class="col-6 mb-5">
+                            <table class="table table-hover">
+                                <tbody>
+                                <tr class="bg-light">
+                                    <th scope="row">Nombre del alumno(a)</th>
+                                    <td class="thead-light">{{ estudiante.alumno }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Entidad donde obtuvo el grado</th>
+                                    <td colspan="2">{{ estudiante.programa }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Grado obtenido</th>
+                                    <td colspan="2">{{ estudiante.nivel }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Carrera/Programa</th>
+                                    <td colspan="2">{{ estudiante.programa }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Fecha de graduación</th>
+                                    <td colspan="2">{{ estudiante.titulacion|localizeddate('long', 'none')  }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                {% endif %}
+
+
+
+
+
+
+        </div>
+    </div>
+
+{% endblock %}

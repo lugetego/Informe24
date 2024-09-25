@@ -1,0 +1,16 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    form_themes: ['bootstrap_4_layout.html.twig']
+
+
+    globals:
+        anterior-3: 2020
+        anterior-2: 2021
+        anterior-1: 2022
+        anterior: 2023
+        actual: 2024
+        siguiente: 2025
+        abierto: 2024-11-16
+        cerrado: 2025-01-23
