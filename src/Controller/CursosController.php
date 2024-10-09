@@ -65,16 +65,6 @@ class CursosController extends AbstractController
             $em = $this->getDoctrine()->getManager();
 
             // Access form fields
-            $formInicio = $form->get('fechaInicio')->getData();
-            $formFin = $form->get('fechaFin')->getData();
-
-
-            $fechaInicio = new \DateTime("$actual-$formInicio-01");
-            $fechaFin = new \DateTime("$actual-$formFin-30");
-
-            $curso->setFechaInicio($fechaInicio);
-            $curso->setFechaFin($fechaFin);
-
             $curso->setInforme($informe);
             $em->persist($curso);
             $em->flush();
@@ -131,15 +121,10 @@ class CursosController extends AbstractController
         $user = $securityContext->getToken()->getUser();
         $academico = $user->getAcademico();
         $deleteForm = $this->createDeleteForm($curso);
-        $fechaInicio = $curso->getFechaInicio();
-        $fechaFin = $curso->getFechaFin();
-        $monthInicio = $fechaInicio->format('n'); // 'n' gives you the month without leading zeros
-        $monthFin = $fechaFin->format('n');
 
         $editForm = $this->createForm('App\Form\CursosType', $curso);
 
-        $editForm->get('fechaFin')->setData($monthFin);
-        $editForm->get('fechaInicio')->setData($monthInicio);
+
 
 
         $editForm->remove('lugares');
@@ -157,16 +142,9 @@ class CursosController extends AbstractController
             $em = $this->getDoctrine()->getManager();
 
             // Access form fields
-            $formInicio = $editForm->get('fechaInicio')->getData();
-            $formFin = $editForm->get('fechaFin')->getData();
+
             $twigglobals = $this->get("twig")->getGlobals();
             $actual = $twigglobals["actual"];
-
-            $fechaInicio = new \DateTime("$actual-$formInicio-01");
-            $fechaFin = new \DateTime("$actual-$formFin-30");
-
-            $curso->setFechaInicio($fechaInicio);
-            $curso->setFechaFin($fechaFin);
 
             $em->persist($curso);
             $em->flush();

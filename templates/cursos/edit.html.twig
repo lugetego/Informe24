@@ -45,28 +45,20 @@
             </div>
             <div>{{ form_errors(edit_form.lugar) }}</div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <div class="form-group">
-                <div class="text-info">{{ form_label(edit_form.fechaInicio) }}</div>
-                <div class="form-row ">
-                    <div class="col" >{{ form_widget(edit_form.fechaInicio) }}</div>
-                    <div>{{ form_errors(edit_form.fechaInicio) }}</div>
-                </div>
+
+            <div class="form-group col-md-4">
+
+            <div>
+                <label class="text-info" for="formSemestre">
+                    {{ form_label(edit_form.semestre) }}
+                </label>
+                {{ form_widget(edit_form.semestre,{'attr': {'class': 'form-control input-sm', 'placeholder':'Semestre en el que se impartió'} } ) }}
             </div>
-        </div>
-        <div class="form-group col-md-4">
-            <div class="form-group">
-                <div class="text-info">{{ form_label(edit_form.fechaFin) }}</div>
-                <div class="form-row ">
-                    <div class="col" >{{ form_widget(edit_form.fechaFin) }}</div>
-                    <div>{{ form_errors(edit_form.fechaFin) }}</div>
-                </div>
-            </div>
+            <div>{{ form_errors(edit_form.semestre) }}</div>
         </div>
 
     </div>
+
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-primary">Guardar</button>

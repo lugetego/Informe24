@@ -44,6 +44,16 @@ class CursosType extends AbstractType
                 'required'=>true,
 //                'choices_as_values' => true,
             ))
+            ->add('semestre', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType',array(
+                'label'=>'*Semestre en el que se impartió',
+                'choices'=>array(
+                    '1 - (ene-jul)'=>'1',
+                    '2 - (ago-dic)'=>'2',
+                ),
+                'placeholder'=>'Seleccionar',
+                'required'=>true,
+//                'choices_as_values' => true,
+            ))
             ->add('horas', 'Symfony\Component\Form\Extension\Core\Type\TextType',array(
                 'label'=>'*Número de horas por semana',
                 'required'=>true,
@@ -64,18 +74,7 @@ class CursosType extends AbstractType
             ->add('lugar','Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label' => 'Lugar donde se impartió',
             ))
-            ->add('fechaInicio', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
-                'label'=>'Mes de inicio',
-                'choices'  => $this->getMonthChoices(),
-                'placeholder' => 'Seleccionar',
-                'mapped'=> false,
-            ])
-            ->add('fechaFin', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
-                'label'=>'Mes de fin',
-                'choices'  => $this->getMonthChoices(),
-                'placeholder' => 'Seleccionar',
-                'mapped'=>false
-            ])
+
         ;
 
         $formModifier = function (FormInterface $form, $otro) {

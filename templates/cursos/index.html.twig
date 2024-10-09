@@ -71,6 +71,8 @@
                                         {% if curso.lugar is defined %}Lugar: {{ curso.lugar }}<br>{% endif %}
                                         {% if curso.nivel is defined %}Nivel: {{curso.nivel}} <br>{% endif %}
                                         {% if curso.horas is defined %}Horas: {{ curso.horas }}<br>{% endif %}
+                                        {% if curso.semestre is defined %}Semestre: {{ curso.semestre }}<br>{% endif %}
+
 
 
                                         <p class="text-right">
@@ -133,7 +135,5 @@
     {{ parent() }}
     <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="{{ asset('js/onChangeCurso.js')}}"></script>
-    <script src="{{ asset('js/months.js')}}"></script>
-
 
 {% endblock %}

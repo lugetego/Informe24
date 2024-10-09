@@ -105,6 +105,8 @@ class AdminController extends AbstractController
                 $existingInformeTecnico = $entityManager->getRepository(Tecnico::class)
                     ->findOneByInforme($existingInforme);
 
+
+
                 if (!$existingInformeTecnico) {
                     $tecnico = new Tecnico();
                     $tecnico->setInforme($existingInforme);
@@ -112,7 +114,27 @@ class AdminController extends AbstractController
 
                     // Persist the new Informe record
                     $entityManager->persist($existingInforme);
+
+
                 }
+
+                // Query the repository to check if a Plan with the same year and academico already exists
+                $existingPlan = $entityManager->getRepository(Plan::class)
+                    ->findOneBy([
+                        'anio' => $anio+1,
+                        'academico' => $academico
+                    ]);
+
+                // If no existing Plan is found, create and persist a new one
+                if (!$existingPlan) {
+                    $plan = new Plan();
+                    $plan->setAnio($anio+1);
+                    $plan->setAcademico($academico);
+
+                    // Persist the new Plan record
+                    $entityManager->persist($plan);
+                }
+
 
             }
             // Flush to execute the inserts

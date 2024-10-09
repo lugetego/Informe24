@@ -65,18 +65,11 @@ class Cursos
     private $lugar;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="fechaInicio", type="date", nullable=true)
+     * @ORM\Column(name="semestre", type="string", length=1, nullable=true)
      */
-    private $fechaInicio;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fechaFin", type="date", nullable=true)
-     */
-    private $fechaFin;
+    private $semestre;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -254,39 +247,6 @@ class Cursos
     }
 
     /**
-     * @return \DateTime
-     */
-    public function getFechaInicio()
-    {
-        return $this->fechaInicio;
-    }
-
-    /**
-     * @param \DateTime $fechaInicio
-     */
-    public function setFechaInicio($fechaInicio)
-    {
-        $this->fechaInicio = $fechaInicio;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getFechaFin()
-    {
-        return $this->fechaFin;
-    }
-
-    /**
-     * @param \DateTime $fechaFin
-     */
-    public function setFechaFin($fechaFin)
-    {
-        $this->fechaFin = $fechaFin;
-    }
-
-
-    /**
      * Set informe
      *
      * @param \App\Entity\Informe $informe
@@ -308,5 +268,25 @@ class Cursos
     {
         return $this->informe;
     }
+
+    /**
+     * @return string
+     */
+    public function getSemestre()
+    {
+        return $this->semestre;
+    }
+
+    /**
+     * @param string $semestre
+     */
+    public function setSemestre($semestre)
+    {
+        $this->semestre = $semestre;
+    }
+
+
+
+
 
 }
