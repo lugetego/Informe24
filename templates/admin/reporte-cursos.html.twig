@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-
     <div class="container">
         <div class="row">
             <!-- Consulta -->
@@ -9,26 +8,105 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ path('reporte_index') }}">Inicio</a></li>
-                        <li class="breadcrumb-item active">Reporte {{ informe.anio  }}</li>
+                        <li class="breadcrumb-item active">Reporte {{ informe.anio }}</li>
                     </ol>
                 </nav>
             </div>
-
         </div>
     </div>
 
     <div class="container mt-3">
-        <h3 class="mb-5">Cursos impartidos por {{ informe.academico.nombre }} {{ informe.academico.apellido }} en {{ informe.anio }} </h3>
+        <h3 class="mb-5">Cursos impartidos por {{ informe.academico.nombre }} {{ informe.academico.apellido }} en {{ informe.anio }}</h3>
 
-        <div>
-            {% if informe.cursos|length == 0 %}
-                <p class="text-danger">No se registró información</p>
-            {% else %}
+        {% if informe.cursos|length == 0 %}
+            <p class="text-danger">No se registró información</p>
+        {% else %}
+            <div class="row">
+                <!-- Left column for Semestre 1 -->
+                {% set semestre1_courses = informe.cursos|filter(curso => curso.semestre == 1) %}
+                {% if semestre1_courses|length > 0 %}
+                    <div class="col-md-6">
+                        <h4 class="mb-4">Cursos Semestre 1</h4>
+                        {% for curso in semestre1_courses %}
+                            <table class="table table-hover mb-5">
+                                <tbody>
+                                <tr class="bg-light">
+                                    <th scope="row">Curso S1</th>
+                                    <td class="thead-light">{{ curso.nombre }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Nivel</th>
+                                    <td colspan="2">{{ curso.nivel }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Programa</th>
+                                    <td colspan="2">{{ curso.lugar }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Entidad en la que se imparte</th>
+                                    <td colspan="2">{{ curso.lugar }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tipo de curso</th>
+                                    <td colspan="2">{{ curso.tipo }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Semestre</th>
+                                    <td colspan="2">{{ curso.semestre }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        {% endfor %}
+                    </div>
+                {% endif %}
 
-                {% for curso in informe.cursos %}
+                <!-- Right column for Semestre 2 -->
+                {% set semestre2_courses = informe.cursos|filter(curso => curso.semestre == 2) %}
+                {% if semestre2_courses|length > 0 %}
+                    <div class="col-md-6">
+                        <h4 class="mb-4">Cursos Semestre 2</h4>
+                        {% for curso in semestre2_courses %}
+                            <table class="table table-hover mb-5">
+                                <tbody>
+                                <tr class="bg-light">
+                                    <th scope="row">Curso S2</th>
+                                    <td class="thead-light">{{ curso.nombre }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Nivel</th>
+                                    <td colspan="2">{{ curso.nivel }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Programa</th>
+                                    <td colspan="2">{{ curso.lugar }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Entidad en la que se imparte</th>
+                                    <td colspan="2">{{ curso.lugar }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tipo de curso</th>
+                                    <td colspan="2">{{ curso.tipo }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Semestre</th>
+                                    <td colspan="2">{{ curso.semestre }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
 
-                        <div class="col-6 mb-5">
-                            <table class="table table-hover">
+            <!-- Courses without a semester (bottom section) -->
+            {% set no_semestre_courses = informe.cursos|filter(curso => curso.semestre == '') %}
+            {% if no_semestre_courses|length > 0 %}
+                <div class="row ">
+                    <div class="col-6">
+                        <h4 class="mb-4">Cursos sin Semestre</h4>
+                        {% for curso in no_semestre_courses %}
+                            <table class="table table-hover mb-5">
                                 <tbody>
                                 <tr class="bg-light">
                                     <th scope="row">Curso</th>
@@ -48,28 +126,18 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Tipo de curso</th>
-                                    <td colspan="2">{{ curso.tipo  }}</td>
+                                    <td colspan="2">{{ curso.tipo }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Inicio/Fin</th>
-                                    <td colspan="2">
-                                        {% if curso.fechaInicio is null or curso.fechaFin is null %}
-
-                                            No se registraron fechas
-                                        {% else %}
-                                        {{ curso.fechaInicio|localizeddate('none', 'none', 'es_ES', null, 'MMMM') }} /
-                                        {{ curso.fechaFin|localizeddate('none', 'none', 'es_ES', null, 'MMMM') }}
-                                            {% endif %}
-                                    </td>
+                                    <th scope="row">Semestre</th>
+                                    <td colspan="2">No se registró semestre</td>
                                 </tr>
                                 </tbody>
                             </table>
-                        </div>
-                {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
             {% endif %}
-
-        </div>
+        {% endif %}
     </div>
-
-
 {% endblock %}
