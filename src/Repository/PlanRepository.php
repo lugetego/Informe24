@@ -25,6 +25,6 @@ class PlanRepository extends EntityRepository
             )
             ->setParameter('academico', $academico)
             ->setParameter('anio', $anio)
-            ->getSingleResult();
+            ->getOneOrNullResult(); // Returns null if no result is found
     }
 }
