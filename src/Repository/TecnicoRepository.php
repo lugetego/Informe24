@@ -35,7 +35,7 @@ class TecnicoRepository extends ServiceEntityRepository
                     "
             )
             ->setParameter('informe', $informe)
-            ->getSingleResult(); // Returns null if no result is found
+            ->getOneOrNullResult(); // Returns null if no result is found
     }
 
 }
