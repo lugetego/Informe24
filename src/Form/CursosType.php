@@ -47,8 +47,8 @@ class CursosType extends AbstractType
             ->add('semestre', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType',array(
                 'label'=>'*Semestre en el que se impartió',
                 'choices'=>array(
-                    '1 - (ene-jul)'=>'1',
-                    '2 - (ago-dic)'=>'2',
+                    '1 - (feb-may)'=>'1',
+                    '2 - (ago-nov)'=>'2',
                 ),
                 'placeholder'=>'Seleccionar',
                 'required'=>true,
