@@ -63,7 +63,7 @@ class DashController extends AbstractController
             $academico = $user->getAcademico();
 
             $informe = $em->getRepository('App:Informe')->findOneByAnio($actual, $academico);
-            $plan = $em->getRepository('App:Plan')->findOneByAnio(2024,$academico);
+            $plan = $em->getRepository('App:Plan')->findOneByAnio(2025,$academico);
 
             $eventos = $em->getRepository('App:Eventos')->findEventos($informe->getId());
             $visitas = $em->getRepository('App:Eventos')->findByVisitantes($informe->getId());
