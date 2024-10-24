@@ -100,7 +100,7 @@
             {% for academico in academicos %}
                 {%  if academico.activo != false %}
                     <tr>
-                        <td> {{ academico.nombre }} {{ academico.apellido }}</td>
+                        <td>{{ academico.apellido }} {{ academico.nombre }}</td>
                         <td>
                             {% for informe in academico.informes %}
                                 {% if informe.anio == anterior %}
@@ -178,7 +178,9 @@
         $(document).ready(function() {
             $('#myTable').DataTable(
                 {
-                    "pageLength": 50
+                    "pageLength": 50,
+                    "order": [[0, 'asc']] // Change 0 to the index of your desired column
+
                 }
             );
         });
