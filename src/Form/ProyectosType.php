@@ -23,7 +23,7 @@ class ProyectosType extends AbstractType
             ->add('tipos', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType',array(
                 'label'=>'*Programa',
                 'choices'=>array(
-                    'CONACYT'=>'CONACYT',
+                    'Conahcyt'=>'Conahcyt',
                     'PAEP'=>'PAEP',
                     'PAPIME'=>'PAPIME',
                     'PAPIIT'=>'PAPIIT',

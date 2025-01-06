@@ -24,7 +24,7 @@ class PosdocType extends AbstractType
                 'label'=>'*Programa',
                 'choices'=>array(
                     'DGAPA'=>'DGAPA',
-                    'Conacyt'=>'Conacyt',
+                    'Conahcyt'=>'Conahcyt',
                     'Otro'=>'Otro',
                 ),
                 // *this line is important*
