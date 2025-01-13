@@ -113,7 +113,7 @@
                 </div>
                 <div class="card-body">
                     <p class="text-dark text-justify">La fecha límite para el envío de tu Informe de trabajo {{ actual }} y Plan de trabajo {{ siguiente }}
-                        es el <strong>15 de enero de 2024.</strong></p>
+                        es el <strong>{{ cerrado|localizeddate('long', 'none') }}.</strong></p>
                     {% if informe.enviado is defined and informe.enviado == 1 %}
                         <div class="px-3 py-2 bg-gradient-success text-white">
                             <p class="text-justify">Se ha recibido la información de tu informe y plan de trabajo,
