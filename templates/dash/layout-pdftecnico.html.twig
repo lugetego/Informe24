@@ -33,12 +33,12 @@
 
             <p class="text-justify"><small>{{ informeAnual| nl2br }}</small></p>
 
-            {% if informe.estudiantes is not null %}
+            {% if informe.estudiantes | length > 0 %}
                 <div class="text-gray-900 pb-1 bg-gray-100"><small>Tesistas</small></div>
                 <p class="text-justify text-gray-700"><small>{{ informe.estudiantes| nl2br }}</small></p>
             {% endif %}
 
-            {% if informe.cursos is not null%}
+            {% if informe.cursos | length > 0%}
                 <div class="text-gray-900 pb-1 bg-gray-100"><small>Cursos y seminarios</small></div>
                 <p class="text-justify text-gray-700"><small>{{ informe.cursos | nl2br  }}  </small></p>
             {% endif %}
