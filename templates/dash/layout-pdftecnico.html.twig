@@ -33,9 +33,22 @@
 
             <p class="text-justify"><small>{{ informeAnual| nl2br }}</small></p>
 
-            {% if informe.estudiantes | length > 0 %}
+            {% if informe.estudiantes|length > 0 %}
                 <div class="text-gray-900 pb-1 bg-gray-100"><small>Tesistas</small></div>
-                <p class="text-justify text-gray-700"><small>{{ informe.estudiantes| nl2br }}</small></p>
+                <ol>
+                    {% for estudiante in informe.estudiantes %}
+                        <small>
+                            <li class="text-justify text-gray-700">
+                                {{ estudiante.alumno |title }},
+                                {{ estudiante.nivel|title }},
+                                {{ estudiante.programa }},
+                                {% if estudiante.avance %}<small>{{ estudiante.avance }}% de avance,</small>{% endif %}
+                                {% if estudiante.titulado %} titulado el {{ estudiante.titulacion|localizeddate('long', 'none') }},{% endif %}
+                                {% if estudiante.tesis %}<small>tema de tesis:</small> <em>"{{ estudiante.tesis }}"</em>{% endif %}
+                            </li>
+                        </small>
+                    {% endfor %}
+                </ol>
             {% endif %}
 
             {% if informe.cursos|length > 0 %}
