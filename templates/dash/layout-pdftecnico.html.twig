@@ -38,9 +38,17 @@
                 <p class="text-justify text-gray-700"><small>{{ informe.estudiantes| nl2br }}</small></p>
             {% endif %}
 
-            {% if informe.cursos | length > 0%}
+            {% if informe.cursos|length > 0 %}
                 <div class="text-gray-900 pb-1 bg-gray-100"><small>Cursos y seminarios</small></div>
-                <p class="text-justify text-gray-700"><small>{{ informe.cursos | nl2br  }}  </small></p>
+                <ol>
+                    {% for curso in informe.cursos %}
+                        <small> <li class="text-justify">{{ curso.nombre }},
+                                <small>{{ curso.tipo|lower}}, <em>{{ curso.nivel|lower }}, {{ curso.lugar }}</em></small>,
+                                {% if curso.horas %}<small>{{ curso.horas }} horas por semana,</small>{% endif %}
+                            </li>
+                        </small>
+                    {% endfor %}
+                </ol>
             {% endif %}
 
             <div class="row">
