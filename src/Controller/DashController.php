@@ -303,7 +303,7 @@ class DashController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
 
-        if ($this->isGranted('ROLE_ADMIN')) {
+        if ($this->isGranted(['ROLE_ADMIN','ROLE_CONSULTA'])) {
 
             $informe = $em->getRepository('App:Informe')->findOneByAnio($actual, $academico);
             $eventos = $em->getRepository('App:Eventos')->findEventos($informe->getId());
