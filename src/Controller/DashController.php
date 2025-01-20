@@ -90,7 +90,7 @@ class DashController extends AbstractController
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        if ( $this->isGranted('ROLE_ADMIN') )
+        if ( $this->isGranted(['ROLE_ADMIN','ROLE_CONSULTA']) )
         {
             $academicos = $em->getRepository('InformeBundle:Academico')->findAll();
             return $this->render('dash/admin.html.twig', array(
