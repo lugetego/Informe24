@@ -300,7 +300,7 @@ class DashController extends AbstractController
         $twigglobals = $this->get("twig")->getGlobals();
         $actual = $twigglobals["actual"];
 
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+      //  $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
 
         if ($this->isGranted(['ROLE_ADMIN','ROLE_CONSULTA'])) {
