@@ -12,5 +12,5 @@ twig:
         anterior: 2023
         actual: 2024
         siguiente: 2025
-        abierto: 2025-01-29
-        cerrado: 2025-03-01
+        abierto: 2025-01-01
+        cerrado: 2025-02-01
