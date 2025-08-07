@@ -116,7 +116,7 @@ class PlanController extends AbstractController
         $user = $securityContext->getToken()->getUser();
         $academico = $user->getAcademico();
 
-        $plan = $em->getRepository('App:Plan')->findOneByAnio(2025, $academico);
+        $plan = $em->getRepository('App:Plan')->findOneByAnio(2026, $academico);
 
         $enviado = $plan->isEnviado();
 
