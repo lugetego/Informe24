@@ -61,7 +61,7 @@ class VisitantesType extends AbstractType
                     'year' => 'Año',
                     'month' => 'Mes',
                     'day' => 'Día'),
-                'years'=> range(2024,2024),
+                'years'=> range(2025,2025),
                 'label'=>'Fecha de inicio',
                 'required'=>true,
             ))
@@ -70,7 +70,7 @@ class VisitantesType extends AbstractType
                     'year' => 'Año',
                     'month' => 'Mes',
                     'day' => 'Día'),
-                'years'=> range(2024,2025),
+                'years'=> range(2025,2026),
                 'label'=>'Fecha de término',
                 'required'=>true,
             ))
