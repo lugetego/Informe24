@@ -20,7 +20,7 @@ class ComentariosController extends AbstractController
 {
     /**
      * Lists all Comentarios entities.
-     * @Route("/anual/{actual}", name="comentarios_index", methods={"GET"}, defaults={"actual"="2024"})
+     * @Route("/anual/{actual}", name="comentarios_index", methods={"GET"}, defaults={"actual"="2025"})
      */
     public function index($actual)
     {
