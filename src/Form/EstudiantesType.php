@@ -81,7 +81,7 @@ class EstudiantesType extends AbstractType
                     'year' => 'Año',
                     'month' => 'Mes',
                     'day' => 'Día'),
-                'years'=> range(2024,2028),
+                'years'=> range(2025,2029),
                 'label'=>'Fecha de titulación',
                 'required'=>false,
             ))
