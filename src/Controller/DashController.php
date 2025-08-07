@@ -24,7 +24,7 @@ class DashController extends AbstractController
     /**
      * Lists all actions on Informe .
      *
-     * @Route("/{actual}", name="dashboard", methods={"GET"}, defaults={"actual"="2024"})
+     * @Route("/{actual}", name="dashboard", methods={"GET"}, defaults={"actual"="2025"})
      */
 
     public function indexAction($actual)
