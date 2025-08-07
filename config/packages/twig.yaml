@@ -6,11 +6,12 @@ twig:
 
 
     globals:
-        anterior-3: 2020
-        anterior-2: 2021
-        anterior-1: 2022
-        anterior: 2023
-        actual: 2024
-        siguiente: 2025
+        anterior-4: 2020
+        anterior-3: 2021
+        anterior-2: 2022
+        anterior-1: 2023
+        anterior: 2024
+        actual: 2025
+        siguiente: 2026
         abierto: 2025-01-01
-        cerrado: 2025-02-20
+        cerrado: 2026-02-20
