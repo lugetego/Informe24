@@ -111,7 +111,7 @@ class EventosType extends AbstractType
                     'year' => 'Año',
                     'month' => 'Mes',
                     'day' => 'Día'),
-                'years'=> range(2024,2024),
+                'years'=> range(2025,2025),
                 'label'=>'Fecha de inicio',
                 'required'=>true,
 
@@ -121,7 +121,7 @@ class EventosType extends AbstractType
                     'year' => 'Año',
                     'month' => 'Mes',
                     'day' => 'Día'),
-                'years'=> range(2024,2024),
+                'years'=> range(2025,2025),
                 'label'=>'Fecha de término',
                 'required'=>true,
             ))
