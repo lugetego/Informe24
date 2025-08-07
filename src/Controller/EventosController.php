@@ -26,7 +26,7 @@ class EventosController extends AbstractController
      * Lists all Eventos entities.
      *
      * @Route("/", name="eventos_index", methods={"GET"})
-     * @Route("/anual/{actual}", name="eventos_index", methods={"GET"}, defaults={"actual"="2024"})
+     * @Route("/anual/{actual}", name="eventos_index", methods={"GET"}, defaults={"actual"="2025"})
 
      */
     public function index($actual)

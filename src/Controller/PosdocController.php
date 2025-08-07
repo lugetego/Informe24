@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PosdocController extends AbstractController
 {
     /**
-     * @Route("/anual/{actual}", name="posdoc_index", methods={"GET"}, defaults={"actual"="2024"})
+     * @Route("/anual/{actual}", name="posdoc_index", methods={"GET"}, defaults={"actual"="2025"})
      */
     public function index($actual)
     {

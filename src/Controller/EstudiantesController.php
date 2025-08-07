@@ -22,7 +22,7 @@ class EstudiantesController extends AbstractController
 {
     /**
      * Lists all Estudiantes entities.
-     * @Route("/anual/{actual}", name="estudiantes_index", methods={"GET"}, defaults={"actual"="2024"})
+     * @Route("/anual/{actual}", name="estudiantes_index", methods={"GET"}, defaults={"actual"="2025"})
      */
     public function index($actual)
     {

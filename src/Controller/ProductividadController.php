@@ -35,7 +35,7 @@ class ProductividadController extends AbstractController
 {
     /**
      * Lists all Productividad entities.
-     * @Route("/anual/{actual}", name="productividad_index", methods={"GET"}, defaults={"actual"="2024"})
+     * @Route("/anual/{actual}", name="productividad_index", methods={"GET"}, defaults={"actual"="2025"})
 
      */
     public function indexAction($actual)

@@ -21,7 +21,7 @@ class VisitantesController extends AbstractController
      * Lists all Visitantes entities.
      *
      * @Route("/", name="visitantes_index", methods={"GET"})
-     * @Route("/anual/{actual}", name="visitantes_index", methods={"GET"}, defaults={"actual"="2024"})
+     * @Route("/anual/{actual}", name="visitantes_index", methods={"GET"}, defaults={"actual"="2025"})
 
      */
     public function index($actual)
