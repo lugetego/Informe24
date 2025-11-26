@@ -58,7 +58,7 @@ class ProductividadType extends AbstractType
             ->add('year', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType',array(
                 'label'=>'*Año',
                 'choices'=>array(
-                    '2024'=>'2024',
+                    '2025'=>'2025',
                 ),
                 'placeholder'=>'Seleccionar',
                 'required'=>true,
