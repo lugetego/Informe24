@@ -38,6 +38,7 @@ class VisitantesController extends AbstractController
         $enviado = $informe->isEnviado();
 
         return $this->render('visitantes/index.html.twig', array(
+            'informe' => $informe,
             'visitantes' => $visitantes,
             'enviado'=>$enviado,
             'anual'=>$actual
