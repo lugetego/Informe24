@@ -46,13 +46,13 @@
                         <p class="text-justify text-dark">
                             En este rubro deberá reportar las licencias y comisiones dentro del periodo que corresponde a su informe .</p>
                         <p class="text-justify text-dark"><strong class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></strong>
-                            Se ha precargado en este sistema la información que nos proporciona la Secretaría Académica. Favor de verificar que sea correcta.
+                            Se puede precargar en este sistema la información de este rubro que nos proporciona la Secretaría Académica. Favor de verificar que sea correcta.
                             Si hubiera alguna licencia o comisión faltante favor de agregarla.</p>
 
                         {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
                         {%  if informe.importsia is defined and informe.eventos|length == 0 %}
                             <form action="{{ path('import_sia', { 'academicoId': academicoId, 'year': actual }) }}" method="post">
-                                <button type="submit" class="btn btn-primary">Importar Eventos</button>
+                                <button type="submit" class="btn btn-primary">Importar Eventos y visitantes</button>
                             </form>
                         {% endif %}
 
