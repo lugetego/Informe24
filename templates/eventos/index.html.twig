@@ -52,8 +52,10 @@
                         {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
                         {%  if informe.importsia is defined and informe.eventos|length == 0 %}
                             <form action="{{ path('import_sia', { 'academicoId': academicoId, 'year': actual }) }}" method="post">
-                                <button type="submit" class="btn btn-primary">Importar Eventos y visitantes</button>
+                                <button type="submit" class="btn btn-primary">Importar Eventos y Visitantes</button>
                             </form>
+                            {% else %}
+                                La información de este rubro ya ha sido precargada.
                         {% endif %}
 
                         {% set total= app.request.query.get('count')  %}
