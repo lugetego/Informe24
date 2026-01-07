@@ -49,7 +49,7 @@
                             nos proporciona el Sistema de Referencias Bibliográficas del CCM (<a href="http://gaspacho.matmor.unam.mx/SRB/" target="_blank"><u>SRB</u></a>), favor de verificar que la información
                             sea la correcta. Si hubiera algún artículo o preprint que no aparezca favor de agregarlo.</p>
 
-                        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                      {#   {% if is_granted('ROLE_PREVIOUS_ADMIN') %} #}
                         {%  if informe.importsrb is defined and informe.productividades|length == 0 %}
                         <form action="{{ path('import_srb', { 'author': apellido, 'year': actual }) }}" method="post">
                             <button type="submit" class="btn btn-primary">Importar Referencias</button>
@@ -78,7 +78,7 @@
 
                         {% endif %}
                     </div>
-                    {% endif %}
+                   {#  {% endif %} #}
                 </div>
             </div>
             <div class="col-xl-8 col-md-8 col-sm-12 mb-2">
