@@ -49,14 +49,14 @@
                             Se puede precargar en este sistema la información de este rubro que nos proporciona la Secretaría Académica. Favor de verificar que sea correcta.
                             Si hubiera alguna licencia o comisión faltante favor de agregarla.</p>
 
-                        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                     {#    {% if is_granted('ROLE_PREVIOUS_ADMIN') %} #}
                         {%  if informe.importsia is defined and informe.eventos|length == 0 %}
                             <form action="{{ path('import_sia', { 'academicoId': academicoId, 'year': actual }) }}" method="post">
                                 <button type="submit" class="btn btn-primary">Importar Eventos y Visitantes</button>
                             </form>
-                            {% else %}
+                        {#     {% else %}
                                 La información de este rubro ya ha sido precargada.
-                        {% endif %}
+                        {% endif %} #}
 
                         {% set total= app.request.query.get('count')  %}
                         {% set visitantes= app.request.query.get('visitantes')  %}
