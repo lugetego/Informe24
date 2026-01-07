@@ -54,9 +54,10 @@
                             <form action="{{ path('import_sia', { 'academicoId': academicoId, 'year': actual }) }}" method="post">
                                 <button type="submit" class="btn btn-primary">Importar Eventos y Visitantes</button>
                             </form>
-                        {#     {% else %}
+                            {% else %}
                                 La información de este rubro ya ha sido precargada.
-                        {% endif %} #}
+                        {% endif %}
+                        {# {% endif %} #}
 
                         {% set total= app.request.query.get('count')  %}
                         {% set visitantes= app.request.query.get('visitantes')  %}
