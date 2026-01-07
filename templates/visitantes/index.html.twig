@@ -51,7 +51,7 @@
                             la proporciona la Secretaría Académica. Favor de verificar que sea correcta.
                             Si hubiera algún visitante faltante favor de agregarlo manualmente.</p>
 
-                        {% if informe.importsia != '' %}
+                        {% if informe.importsia is defined %}
                             La información de este rubro ya ha sido precargada.
                         {% endif %}
 
