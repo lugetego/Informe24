@@ -50,7 +50,7 @@
                             Si hubiera alguna licencia o comisión faltante favor de agregarla.</p>
 
                         {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
-                        {%  if informe.importsia is defined and informe.eventos|length == 0 %}
+                        {%  if informe.importsia is not defined and informe.eventos|length == 0 %}
                             <form action="{{ path('import_sia', { 'academicoId': academicoId, 'year': actual }) }}" method="post">
                                 <button type="submit" class="btn btn-primary">Importar Eventos y Visitantes</button>
                             </form>
